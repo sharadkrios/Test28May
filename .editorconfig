@@ -1,0 +1,18 @@
+﻿# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+############################### 
+# Core EditorConfig Options   # 
+############################### 
+# All files 
+[*] 
+indent_style = space 
+insert_final_newline = false 
+charset = utf-8-bom 
+end_of-line = crlf
+
+# Code files 
+[*.java] 
+indent_size = 4 
+
+# Code files 
+[*.xml] 
+indent_size = 2 

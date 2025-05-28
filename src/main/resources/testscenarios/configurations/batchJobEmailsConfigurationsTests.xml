@@ -1,0 +1,22 @@
+<!--  Scenario file is used to test the Batch Job Emails Page  -->
+<suite name="Cira Management">
+	<groups>
+		<run>
+			<include name="Smoke" />
+			<include name="Functional" />
+		</run>
+	</groups>
+	<listeners>
+		<listener class-name="com.ciranet.testlisteners.TestListener" />
+		<listener class-name="com.ciranet.testlisteners.LoginListener" />
+	</listeners>
+	<parameter name="usertype" value="internaluser" />
+	<parameter name="username" value="abhay.ranade" />
+	<test thread-count="1" name="Configurations Page Test" enabled="true">
+		<parameter name="contextSearchText" value="Herff Ranch" />
+		<classes>
+			<class
+				name="com.ciranet.configurations.testcases.BatchJobEmailsConfigurationsPageTest"> </class>
+		</classes>
+	</test>
+</suite>

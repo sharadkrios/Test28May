@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Scenario file is used to test the Service Page -->
+
+<suite name="Cira Management">
+	<groups>
+		<run>
+			<include name="Smoke" />
+			<include name="Functional" />
+		</run>
+	</groups>
+
+	<listeners>
+		<listener class-name="com.ciranet.testlisteners.TestListener" />
+		<listener class-name="com.ciranet.testlisteners.LoginListener" />
+	</listeners>
+
+	<parameter name="usertype" value="internaluser"></parameter>
+	<parameter name="username" value="abhay.ranade"></parameter>
+
+	<test thread-count="1" name="Configuration Services Configurations Page Test"
+		enabled="true">
+		<parameter name="contextSearchText" value="RealManage"/>
+		<classes>
+			<class
+				name="com.ciranet.configurations.testcases.ServicesConfigurationsPageTest">
+			</class>
+		</classes>
+	</test>
+</suite> 

@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/target/
+/surefire-reports/
+/hs_err_pid3176.log
+.classpath
+/bin/
+.settings/
+.factorypath
+/.vs
