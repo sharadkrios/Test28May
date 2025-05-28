@@ -11,5 +11,5 @@ public class Constants
     
     public static final String USER_CREDENTIALS_PATH="usercredentials.xml"; // File is retrieved from src/main/resources/
     
-    public static final boolean GUI_MODE=true; //  GUI is set to false means the Headless mode is true by default.
+    public static final boolean GUI_MODE=false; //  GUI is set to false means the Headless mode is true by default.
 }
