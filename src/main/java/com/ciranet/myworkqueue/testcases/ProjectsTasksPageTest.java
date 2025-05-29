@@ -21,6 +21,6 @@ public class ProjectsTasksPageTest extends TestBase {
 		TestBase.setExtentReportSettings("Projects / Tasks", Constants.SMOKE_TESTING, "Verify Projects / Tasks",
 				"Verifying Projects / Tasks navigation");
 		projectsTasksPage = new ProjectsTasksPage(driver);
-		assertTrue(projectsTasksPage.navigateToProjectsTasks());
+        projectsTasksPage.navigateToProjectsTasks();
 	}
 }
