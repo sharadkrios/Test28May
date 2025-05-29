@@ -21,6 +21,17 @@ public class ProjectsTasksPageTest extends TestBase {
 		TestBase.setExtentReportSettings("Projects / Tasks", Constants.SMOKE_TESTING, "Verify Projects / Tasks",
 				"Verifying Projects / Tasks navigation");
 		projectsTasksPage = new ProjectsTasksPage(driver);
-        projectsTasksPage.ProjectTaskPageLanding();
+		assertTrue(projectsTasksPage.navigateToProjectsTasks(), "Error navigating to Projects / Tasks Page");
+	}
+
+	@Test(priority = 1, description = "Verify tab Switching", groups = { Constants.FUNCTIONAL_TESTING })
+	public void testTabSwitching() {
+		LoggerManager.info("Verifying Tab Switch");
+		TestBase.setExtentReportSettings("Tab Switch", Constants.FUNCTIONAL_TESTING, "Verify Tab Switch",
+				"Verifying Tab Switch");
+		projectsTasksPage = new ProjectsTasksPage(driver);
+		assertTrue(projectsTasksPage.verifyTabSwitching(), "Error Tab switching is not working");
 	}
 }
+
+
