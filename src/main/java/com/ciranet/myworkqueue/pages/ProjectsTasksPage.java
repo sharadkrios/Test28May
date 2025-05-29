@@ -1,507 +1,389 @@
 package com.ciranet.myworkqueue.pages;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.ciranet.basepage.BasePage;
+import com.ciranet.navigation.Navigation;
+import com.ciranet.utilities.LoggerManager;
 
-public class ProjectsTasksPage extends BasePage{
+public class ProjectsTasksPage extends BasePage {
 
-	public ProjectsTasksPage(WebDriver driver) 
-	{
+	public ProjectsTasksPage(WebDriver driver) {
 		super(driver);
 	}
 
-	// Initialising of object
-	@FindBy(xpath = "//span[normalize-space()='My Work Queue']")
-	WebElement myWorkQueueMenu;
-
-	@FindBy(xpath = "//span[normalize-space()='Projects / Tasks']")
-	WebElement projectTaskmenu;
-
-	@FindBy(xpath = "//div[@class='cc-owner-search-component-container']//input")
-	WebElement ownersearchBox;
-
-	@FindBy(xpath = "//i[@class='dx-icon dx-icon-menu']")
-	WebElement toolbarMenu;
-
-	@FindBy(xpath = "//ul[contains(@class,'dx-treeview-node-container dx-treeview-node-container-opened')]//li//div//span[contains(text(),'My Work Queue')]")
-	WebElement menuMyWorkQueue;
+	@FindBy(xpath = "//span[normalize-space()='Notification Settings']")
+	WebElement notificationSettingsButton;
 
 	@FindBy(xpath = "//span[normalize-space()='Open Tasks']")
-	WebElement openTaskTab;
-
-	@FindBy(xpath = "(//div[@id='dx-d24991e9-3d1a-1189-1d38-cb2e46db23cc'])[1]")
-	WebElement openTabStatus;
+	WebElement openTasksTab;
 
 	@FindBy(xpath = "//div[@class='dx-item-content dx-tab-content']//span[normalize-space()='Closed Tasks']")
 	WebElement closedTasksTab;
-
-	@FindBy (xpath = "(//div[@class='dx-item dx-tab dx-tab-selected dx-state-hover'])[1]")
-	WebElement closeTabStatus;
-
-	@FindBy(xpath = "//span[normalize-space()='Projects / Tasks']")
-	WebElement menuProjectTasks;
-
-	@FindBy(xpath = "(//div[contains(@class,'dx-dropdowneditor-icon')])[1]")
-	WebElement activeFilterDropdown;
 
 	@FindBy(xpath = "//div[@class='dx-button-content']//span[normalize-space()='Action']")
 	WebElement actionButton;
 
 	@FindBy(xpath = "//div[@class='menu-text'][normalize-space()='View / Edit']")
-	WebElement vieweditOption;
+	WebElement viewEditOption;
 
 	@FindBy(xpath = "//div[@class='dx-template-wrapper']//textarea[@role='textbox']")
 	WebElement updateShortDesc;
 
-	@FindBy(xpath = "//div//span[normalize-space()='Save']")
-	WebElement saveAction;
-
-	@FindBy(xpath = "//div[contains(text(),'All Tasks')]")
-	WebElement allTaskFiltervalue;
-
-	@FindBy(xpath = "//div[contains(text(),'My Tasks')]")
-	WebElement myTaskFiltervalue;
-
-	@FindBy(xpath ="(//input[contains(@autocomplete,'off')])[2]")
-	WebElement activeFilterValue;
-
 	@FindBy(xpath = "//span[normalize-space()='Refresh']")
 	WebElement refreshButtonClick;
 
-	@FindBy(xpath = "//span[normalize-space()='Add New Project / Task']")
-	WebElement addNewProjectTaskbuttton;
-
-	@FindBy(xpath = "//div[@class='dx-toolbar dx-widget dx-visibility-change-handler dx-collection dx-popup-title dx-has-close-button']//div[@class='dx-toolbar-items-container']")
-	WebElement popupAddTask;
-
-	@FindBy(xpath = "//dx-button[@title='Cancel']//div[@class='dx-button-content']")
-	WebElement buttonCancel;
-
-	@FindBy(xpath = "//span[normalize-space()='Notification Settings']")
-	WebElement notificationbutton;
+	@FindBy(xpath = "//span[@class='dx-button-text'][contains(.,'Cancel')]")
+	WebElement cancelButton;
 
 	@FindBy(xpath = "//dx-switch[@aria-label='No']//div[@class='dx-switch-off'][normalize-space()='No']")
-	WebElement disableEmailnotification;
+	WebElement disableEmailNotification;
 
 	@FindBy(xpath = "//dx-switch[@aria-label='Yes']//div[@class='dx-switch-on'][normalize-space()='Yes']")
-	WebElement enableEmailnotification;
-
-	@FindBy(xpath="(//div[@class='dx-switch-off'][contains(.,'No')])[2]")
-	WebElement notifyMyselfNo;
-
-	@FindBy(xpath = "//dx-switch[@aria-label='Yes']//div[@class='dx-switch-on'][normalize-space()='Yes']")
-	WebElement notifyMyselfYes;
+	WebElement enableEmailNotification;
 
 	@FindBy(xpath = "//dx-button[@aria-label='Close']//div[@class='dx-button-content']")
-	WebElement notificationClosebutton;
-
-	@FindBy(xpath = "//div[@class='dx-toolbar dx-widget dx-visibility-change-handler dx-collection dx-popup-title dx-has-close-button']//div[@class='dx-toolbar-items-container']")
-	public String notificationSettingsPopUp;
-
-	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-angle-double-left']")
-	WebElement expandIcon;
-
-	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-angle-double-right']")
-	WebElement collapseIcon;
+	WebElement notificationCloseButton;
 
 	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-external-link-alt']")
 	WebElement fullScreenIcon;
-
-	@FindBy(xpath = "//div[@class='dx-widget dx-button dx-button-mode-text dx-button-danger dx-button-has-icon']//i[@class='dx-icon cc-icon fas fa-times-circle']")
-	WebElement fullscreenClose;
 
 	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-external-link-alt fa-rotate-180']")
 	WebElement normalScreenIcon;
 
 	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-ban fa-flip-horizontal']")
 	WebElement resetLayout;
-	
+
 	@FindBy(xpath = "//i[@class='dx-icon dx-icon-columnchooser fa-stack-2x']")
 	WebElement columnChooser;
 
 	@FindBy(xpath = "//i[@class='dx-icon dx-icon-close']")
 	WebElement columnChooserClose;
 
-	@FindBy(xpath = "//sup[@class='page-help-icon']")
+	@FindBy(xpath = "(//a[@class='fas fa-question-circle'])[1]")
 	WebElement helpProjectTask;
 
 	@FindBy(xpath = "//span[normalize-space()='Add New Project / Task']")
-	WebElement addNewProjectTaskButton;
+	WebElement addNewProjectTask;
 
-	@FindBy(xpath = "//div[@class='dx-template-wrapper dx-button-content']//div[@class='dx-dropdowneditor-icon']")
-	WebElement addNewTaskCommunity;
+	@FindBy(xpath = "(//dx-button[@title='Cancel'])[1]")
+	WebElement addNewProjectTaskCloseButton;
 
-	@FindBy(xpath = "//div//td[normalize-space()='1100 Trinity Mills Condominium Owners Association']")
-	WebElement addNewTaskCommunityfilter;
-
-	@FindBy(css = "textarea[spellcheck='false']")
-	WebElement addNewTaskItem;
-
-	@FindBy(xpath = "//textarea[@role='textbox']")
-	WebElement addNewTaskShortDescription;
-
-	@FindBy(xpath = "//dx-text-box[@class='dx-show-invalid-badge dx-textbox dx-texteditor dx-editor-outlined dx-texteditor-empty dx-widget dx-state-hover dx-state-focused']//input[@role='combobox']")
-	WebElement addNewTaskResponsible;
-
-	@FindBy(xpath = "(//input[contains(@autocomplete,'off')])[23]")
-	WebElement addNewTaskResponsiblefilter;
-
-	@FindBy(xpath = "//dx-date-box[@type='date']//input[@role='combobox']")
-	WebElement addNewTaskDueDate;
-
-	@FindBy(xpath = "//dx-select-box[@class='dx-show-invalid-badge dx-selectbox dx-textbox dx-texteditor dx-dropdowneditor-button-visible dx-editor-outlined dx-texteditor-empty dx-widget dx-dropdowneditor dx-dropdowneditor-field-clickable dx-state-focused dx-dropdowneditor-active dx-state-hover dx-skip-gesture-event']//div[@class='dx-dropdowneditor-icon']")
-	WebElement addNewTaskStatus;
-
-	@FindBy(xpath = "//div[contains(text(),'In Progress')]")
-	WebElement addNewTaskStatusfilter;
-
-	@FindBy(xpath = "//span[normalize-space()='Cancel']")
-	WebElement addNewTaskCancelButton;
-
-	@FindBy(xpath = "//span[normalize-space()='Save']")
-	WebElement addNewTaskShortSaveButton;
-
-	@FindBy (xpath="//span[@class='dx-tab-text'][contains(.,'Closed Tasks')]")
-	WebElement closeTab;
-
-	@FindBy (xpath="//input[@max='3650']")
+	@FindBy(xpath = "//input[@max='3650']")
 	WebElement daysText;
 
-	@FindBy (xpath="//span[@class='dx-button-text']")
+	@FindBy(xpath = "//span[@class='dx-button-text']")
 	WebElement refreshButton;
 
-	@FindBy (xpath = "//div//i[@class='dx-icon cc-icon far fa-minus-square']")
-	WebElement expandandCollapse;
+	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-angle-double-right']")
+	WebElement hideConfiguration;
 
-	@FindBy (xpath="//i[@class='dx-icon cc-icon fas fa-angle-double-right']")
-	WebElement rightArrow;
+	@FindBy(xpath = "//i[@class='dx-icon cc-icon fas fa-angle-double-left']")
+	WebElement showConfiguration;
 
-	@FindBy (xpath="//i[@class='dx-icon cc-icon fas fa-angle-double-left']")
-	WebElement leftArrow;
+	Navigation navigationSearch = new Navigation(driver);
 
-	@FindBy (xpath="//i[@class='fas fa-user-circle']")
-	WebElement userProfile;
-
-	@FindBy (xpath="//span[normalize-space()='Logout']")
-	WebElement logoutClick;
-	
-	@FindBy(xpath = "//div[contains(text(),'Add New Task')]")
-	WebElement titleAddNewTask;
-
-	@FindBy(xpath = "dx-loadindicator-icon")
-	WebElement loaderIcon;
-
-	public boolean ProjectTaskPageLanding() 
-	{	
-		waitForInvisibility(loaderIcon);
-		clickElement(myWorkQueueMenu);
-		waitForInvisibility(loaderIcon);
-		scrollToElement(projectTaskmenu);    	
-		waitForElementToBeClickable(projectTaskmenu);
-		if (isElementEnabled(projectTaskmenu)){
-			clickElement(projectTaskmenu);
-			waitForInvisibility(loaderIcon);
-			return true;
-		}
-		else
-			return false;
-	}
-
-	public boolean helpProjectTask() 
-	{
-		waitForElementToBeVisible(helpProjectTask);
-		waitForInvisibility(loaderIcon);
-		switchToNewTabAndVerifyNewURL(helpProjectTask);
-		return true;
-	}
-
-	
-	public boolean Activefilterselection() 
-	{
-		waitForInvisibility(loaderIcon);
-		clickElement(openTaskTab);
-		System.out.println("Open Task Tab Selected");		
-
-		waitForElementToBeClickable(activeFilterDropdown);
-		clickElement(activeFilterDropdown);
-		waitForInvisibility(loaderIcon);
-		
-		activeFilterDropdown.click();
-		scrollToElement(activeFilterDropdown);
-		waitForElementToBeClickable(activeFilterDropdown);
-		clickElement(activeFilterDropdown);
-		waitForInvisibility(loaderIcon);
-		System.out.print("Active Filter is clicked\n");
-
-		scrollToElement(allTaskFiltervalue);
-		waitForElementToBeClickable(allTaskFiltervalue);
-		clickElement(allTaskFiltervalue);
-		waitForInvisibility(loaderIcon);
-
-		System.out.println("All Task Filter selected");
-		waitForInvisibility(loaderIcon);
-		return true;
-	}
-
-	public boolean Switchtab() 
-	{ 
-
-		waitForElementToBeClickable(closedTasksTab);
-		closedTasksTab.click();
-		waitForInvisibility(loaderIcon);
-		System.out.println("Closed Task Tab Selected");
-
-		if (isElementEnabled(closedTasksTab)) 
-		{
-			System.out.println("Closed Task Status : True");
-		}
-		else
-		{
-			System.out.println("Closed Task Status : False");
-		}
-
-		waitForElementToBeVisible(openTaskTab);
-		clickElement(openTaskTab);
-		System.out.println("Open Task Tab Selected");
-
-		waitForInvisibility(loaderIcon);
-
-		if (isElementEnabled(openTaskTab)) 
-		{
-			System.out.println("Open Task Status : True");
-		}
-
-		else
-		{
-			System.out.println("Open Task Status : False");
-
-		}
-		return true;
-	}
-
-	public boolean refreshButtonClick() 
-	{
-		waitForElementToBeClickable(refreshButtonClick);
-		clickElement(refreshButtonClick);
-		waitForInvisibility(loaderIcon);
-		System.out.println("Verify Refresh");
-
-		waitForElementToBeClickable(openTaskTab);
-
-		if (isElementDisplayed(openTaskTab)) 
-		{
-			System.out.println("Refresh button clicked");
-			return true;
-		}
-
-		else
-		{
-			System.out.println("Refresh button is not clicked");
-			return false;
-		}
-	}
-	
-
-	public boolean NotificationSetting() 
-	{
-		waitForElementToBeClickable(notificationbutton);
-		clickElement(notificationbutton);
-		waitForInvisibility(loaderIcon);
-		System.out.println("Notification Setting Button Clicked \n Status : " + notificationbutton.isSelected());
-
-		String notificaionSettingPopup = driver.getWindowHandle();
-		switchToWindow(notificaionSettingPopup);
-		waitForInvisibility(loaderIcon);
-
-		System.out.println("Inside Notification Setting popup");
-
-		waitForElementToBeClickable(disableEmailnotification);
-		clickElementJS(disableEmailnotification);
-		waitForInvisibility(loaderIcon);
-
-		waitForElementToBeClickable(enableEmailnotification);
-		clickElementJS(enableEmailnotification);
-	
-		waitForElementToBeClickable(notificationClosebutton);
-		clickElementJS(notificationClosebutton); 
-		waitForInvisibility(loaderIcon);
-
-		waitForElementToBeClickable(openTaskTab);
-
-		if (isElementDisplayed(openTaskTab)) 
-		{
-			System.out.println("Notification settings button clicked");
-			return true;
-		}
-
-		else
-		{
-			System.out.println("Notification settings button not clicked");
+	public boolean navigateToProjectsTasks() {
+		try {
+			navigationSearch.navigate(By.xpath("//span[contains(.,'Projects / Tasks')]"), "Projects / Tasks");
+			TimeUnit.SECONDS.sleep(3);
+			return verifyPageHeaderTextMatches("Projects / Tasks");
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("Error occurred while navigating to Projects / Tasks page: " + e);
 			return false;
 		}
 	}
 
-	public boolean expandCollapseClick ()
-	{
-		waitForInvisibility(loaderIcon);
+	public boolean verifyTabSwitching() {
+		try {
+			waitForElementToBeClickable(closedTasksTab);
+			clickElement(closedTasksTab);
+			TimeUnit.SECONDS.sleep(5);
+			LoggerManager.info("Closed Task Tab Selected.");
 
-		waitForElementToBeClickable(rightArrow);
-		
-		if(isElementDisplayed(rightArrow))
-		{
-			clickElementJS(rightArrow);
-			System.out.println("Clicked to Hide Menu");
-		}
-		else
-		{
-			System.out.println("Status : Menu Display");
-		}
-		waitForInvisibility(loaderIcon);
+			if (isElementEnabled(closedTasksTab)) {
+				LoggerManager.info("Closed Task Status: True");
 
-		waitForElementToBeClickable(leftArrow);
+			} else {
+				LoggerManager.error("Closed Task Status: False");
+			}
+			waitForElementToBeVisible(openTasksTab);
+			clickElement(openTasksTab);
+			LoggerManager.info("Open Task Tab Selected.");
+			TimeUnit.SECONDS.sleep(3);
 
-		if(isElementDisplayed(leftArrow))
-		{
-			clickElement(leftArrow);
-			System.out.println("Clicked to Display Menu");
-			return true;
-		}
-		else
-		{
-			System.out.println("Status : Menu Hidden");
+			if (isElementEnabled(openTasksTab)) {
+				LoggerManager.info("Open Task Status: True");
+				return true;
+			} else {
+				LoggerManager.error("Open Task Status: False");
+				return false;
+			}
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred in switch tab: " + e.getMessage());
 			return false;
 		}
 	}
 
-	public boolean ToolBarFullScreen() 
-	{	
-		waitForElementToBeClickable(fullScreenIcon);
-		clickElementJS(fullScreenIcon);
-		System.out.println("Fullscreen Selected");
+	public boolean verifyRefreshButtonClick() {
+		try {
+			waitForElementToBeClickable(refreshButtonClick);
+			clickElement(refreshButtonClick);
+			TimeUnit.SECONDS.sleep(3);
+			LoggerManager.info("Refresh button clicked successfully.");
+			waitForElementToBeClickable(openTasksTab);
 
-		if(isElementDisplayed(fullscreenClose))
-		{
-			System.out.println("Status : FullScreen");
-			return true;
-		}
-		else
-		{
-			System.out.println("FullScreen not clicked");
+			if (isElementDisplayed(openTasksTab)) {
+				LoggerManager.info("Open Task Tab is displayed after refresh.");
+				return true;
+			} else {
+				LoggerManager.error("Open Task Tab is not displayed after refresh.");
+				return false;
+			}
+
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred while clicking the refresh button: " + e.getMessage());
 			return false;
 		}
-		
 	}
 
-	public boolean ToolBarNormalScreen() 
-	{
-		waitForElementToBeClickable(fullscreenClose);
-		waitForElementToBeClickable(normalScreenIcon);
-		
-		if (isElementDisplayed(fullscreenClose))
-		{
-			clickElementJS(normalScreenIcon);
-			System.out.println("Normal Screen Selected");
-			return true;
-		}
-		else
-		{
-			System.out.println("Normal Screen not clicked");
+	public boolean verifyNotificationSettingsButton() {
+		try {
+			waitForElementToBeClickable(notificationSettingsButton);
+			clickElement(notificationSettingsButton);
+			TimeUnit.SECONDS.sleep(3);
+			LoggerManager
+			.info("Notification Setting Button Clicked. Status: " + notificationSettingsButton.isSelected());
+			String notificationSettingPopup = driver.getWindowHandle();
+			switchToWindow(notificationSettingPopup);
+			TimeUnit.SECONDS.sleep(3);
+			LoggerManager.info("Switched to Notification Setting popup.");
+			waitForElementToBeClickable(disableEmailNotification);
+			clickElementJS(disableEmailNotification);
+			TimeUnit.SECONDS.sleep(3);
+			LoggerManager.info("Disabled email notifications.");
+			waitForElementToBeClickable(enableEmailNotification);
+			clickElementJS(enableEmailNotification);
+			LoggerManager.info("Enabled email notifications.");
+			waitForElementToBeClickable(notificationCloseButton);
+			clickElementJS(notificationCloseButton);
+			TimeUnit.SECONDS.sleep(3);
+			LoggerManager.info("Notification Setting popup closed.");
+			waitForElementToBeClickable(openTasksTab);
+
+			if (isElementDisplayed(openTasksTab)) {
+				LoggerManager.info("Notification settings updated successfully.");
+				return true;
+			} else {
+				LoggerManager.error("Open Task Tab is not displayed after closing the notification settings popup.");
+				return false;
+			}
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred while managing notification settings: " + e.getMessage());
 			return false;
 		}
-		
 	}
 
-	public boolean columnChooserClick() 
-	{
-		waitForInvisibility(loaderIcon);
-		clickElement(resetLayout);
-		clickElementJS(columnChooser);
-		waitForInvisibility(loaderIcon);
-		clickElement(columnChooserClose);
-		System.out.println("Column Chooser closed");
-		return true;
+	public boolean verifyToolbarExpandAndCollapse() {
+		try {
+			TimeUnit.SECONDS.sleep(3);
+			waitForElementToBeClickable(hideConfiguration);
+			if (isElementDisplayed(hideConfiguration)) {
+				clickElementJS(hideConfiguration);
+				LoggerManager.info("Clicked to hide");
+			} else {
+				LoggerManager.error("Right arrow is not displayed. Menu might already be hidden.");
+			}
+			TimeUnit.SECONDS.sleep(3);
+			waitForElementToBeClickable(showConfiguration);
+			if (isElementDisplayed(showConfiguration)) {
+				clickElement(showConfiguration);
+				LoggerManager.info("Clicked to display");
+				return true;
+			} else {
+				LoggerManager.error("Left arrow is not displayed. Menu might already be visible.");
+				return false;
+			}
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred in expandCollapseClick: " + e.getMessage());
+			return false;
+		}
 	}
 
-	public String AddNewProjectTaskButtonClick() 
-	{
-		clickElement(openTaskTab);
-		System.out.println("Open Task Tab Selected");
-		waitForInvisibility(loaderIcon);
-
-		waitForElementToBeClickable(addNewProjectTaskButton);
-		clickElement(addNewProjectTaskButton);
-		waitForInvisibility(loaderIcon);
-
-		System.out.println("Add New Project Task Button Clicked");
-		String addNewTaskTitle = getElementText(titleAddNewTask);
-
-		String addNewTaskPopup = driver.getWindowHandle();
-		
-		switchToWindow(addNewTaskPopup);
-		System.out.println("Inside Add Task PopUp");
-		waitForElementToBeClickable(addNewTaskCommunity);
-		clickElement(addNewTaskCommunity);
-		waitForInvisibility(loaderIcon);
-
-		waitForElementToBeClickable(addNewTaskCancelButton);
-		clickElementJS(addNewTaskCancelButton);
-		
-		System.out.println("Data Added and Clicked on Cancel");
-		
-		return addNewTaskTitle; 
+	public boolean verifyToolbarFullScreen() {
+		try {
+			clickElementJS(fullScreenIcon);
+			LoggerManager.info("Fullscreen icon clicked successfully.");
+			if (isElementDisplayed(normalScreenIcon)) {
+				LoggerManager.info("Fullscreen mode activated.");
+				return true;
+			} else {
+				LoggerManager.error("Failed to activate fullscreen mode. Close button not displayed.");
+				return false;
+			}
+		} catch (Exception e) {
+			LoggerManager.error("An error occurred in toolBarFullScreen: " + e.getMessage());
+			return false;
+		}
 	}
 
-	public boolean closedWithinDaysTextbox()
-	{
-		waitForInvisibility(loaderIcon);
-		//Days Verify
-		clickElement(closeTab);
-		waitForInvisibility(loaderIcon);
-		clickElement(daysText);
-		enterText(daysText,"400");
-		System.out.println("Entered 400 Days Filter");
-		clickElement(refreshButton);
-
-		System.out.println("Clicked on Refresh");
-		waitForInvisibility(loaderIcon);
-		return true;
+	public boolean verifyToolbarNormalScreen() {
+		try {
+			if (isElementDisplayed(normalScreenIcon)) {
+				clickElementJS(normalScreenIcon);
+				waitForElementToBeClickable(fullScreenIcon);
+				LoggerManager.info("Normal screen selected successfully.");
+				return true;
+			} else {
+				LoggerManager.error("Normal screen icon not displayed");
+				return false;
+			}
+		} catch (Exception e) {
+			LoggerManager.error("An error occurred in toolBarNormalScreen: " + e.getMessage());
+			return false;
+		}
 	}
 
-	public void verifyActionButton() 
-	{
-		closedWithinDaysTextbox();
+	public boolean verifyToolbarColumnChooserIcon() {
+		try {
+			clickElement(resetLayout);
+			LoggerManager.info("Reset layout clicked.");
 
-		waitForElementToBeClickable(actionButton);
-		clickElement(actionButton);
+			if (isElementDisplayed(columnChooser)) {
 
-		waitForElementToBeClickable(vieweditOption);
-		clickElement(vieweditOption);
-		String editRecordPopup = driver.getWindowHandle();
-		driver.switchTo().window(editRecordPopup);
-		clickElement(updateShortDesc);
-		enterText(updateShortDesc,"Updated Short Description");
-		waitForElementToBeClickable(buttonCancel);
-		clickElement(buttonCancel);
-		waitForInvisibility(loaderIcon);
+				clickElementJS(columnChooser);
+				LoggerManager.info("Column chooser opened.");
+				TimeUnit.SECONDS.sleep(3);
+				clickElement(columnChooserClose);
+				return true;
+			} else {
+				LoggerManager.error("An error occurred in column Chooser Click");
+				return false;
+			}
 
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		Date date = new Date();
-		System.out.println("Task Updated on Date : " + formatter.format(date));
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred in column Chooser Click: " + e.getMessage());
+			return false;
+		}
 	}
 
-	public void userlogout() 
-	{
-		waitForElementToBeClickable(userProfile);
-		clickElement(userProfile);
-		
-		waitForElementToBeClickable(userProfile);
-		scrollToElement(logoutClick);
-		clickElement(logoutClick);
+	public boolean verifyAddNewProjectTaskButton() {
+		try {
+			waitForElementToBeClickable(addNewProjectTask);
+
+			if (isElementDisplayed(addNewProjectTask)) {
+
+				clickElementJS(addNewProjectTask);
+				TimeUnit.SECONDS.sleep(5);
+				LoggerManager.info("Add New Project Task Button Clicked.");
+				clickElement(addNewProjectTaskCloseButton);
+				addNewProjectTaskCloseButton.click();
+				TimeUnit.SECONDS.sleep(5);
+				LoggerManager.info("add New Project Task Close Button clicked");
+				return true;
+			} else {
+				LoggerManager.error("An error occurred in add New Project Task Button Click");
+				return false;
+			}
+
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred in add New Project Task Button Click: " + e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean verifyClosedWithinDaysTextBox() {
+		try {
+
+			if (isElementDisplayed(closedTasksTab)) {
+				clickElement(closedTasksTab);
+				TimeUnit.SECONDS.sleep(3);
+				clickElement(daysText);
+				enterText(daysText, "300");
+				LoggerManager.info("Entered 300 Days Filter");
+				clickElement(refreshButton);
+				LoggerManager.info("Clicked on Refresh");
+				TimeUnit.SECONDS.sleep(3);
+
+				return true;
+
+			} else {
+				LoggerManager.error("An error occurred while interacting with closed within days textbox");
+				return false;
+			}
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager
+			.error("An error occurred while interacting with closed within days textbox: " + e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean verifyActionViewEdit() {
+		try {
+			verifyClosedWithinDaysTextBox();
+			waitForElementToBeClickable(actionButton);
+			if (isElementDisplayed(actionButton)) {
+				clickElement(actionButton);
+				waitForElementToBeClickable(viewEditOption);
+				clickElement(viewEditOption);
+				waitForElementToBeClickable(updateShortDesc);
+				TimeUnit.SECONDS.sleep(5);
+				updateShortDesc.click();
+
+				clickElement(updateShortDesc);
+				enterText(updateShortDesc, "Updated Short Description");
+				waitForElementToBeClickable(cancelButton);
+				clickElement(cancelButton);
+				TimeUnit.SECONDS.sleep(5);
+				LoggerManager.info("Task Updated on Date");
+				return true;
+			} else {
+				LoggerManager.error("An error occurred while verifying the action button");
+
+				return false;
+			}
+
+		}
+
+		catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred while verifying the action button: " + e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean verifyHelpIcon() {
+		try {
+
+			if (isElementDisplayed(helpProjectTask)) {
+				clickElement(helpProjectTask);
+				TimeUnit.SECONDS.sleep(3);
+				LoggerManager.info("Successfully verified");
+				return true;
+			} else {
+				LoggerManager.error("An error occurred in help Project Task");
+				return false;
+			}
+
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			LoggerManager.error("An error occurred in help Project Task" + e.getMessage());
+			return false;
+		}
 	}
 }
+
+
